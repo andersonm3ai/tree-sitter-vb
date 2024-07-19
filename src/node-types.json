@@ -1,0 +1,978 @@
+[
+  {
+    "type": "keyword",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "color_literal",
+          "named": true
+        },
+        {
+          "type": "date_literal",
+          "named": true
+        },
+        {
+          "type": "double_literal",
+          "named": true
+        },
+        {
+          "type": "file_number",
+          "named": true
+        },
+        {
+          "type": "frx_offset",
+          "named": true
+        },
+        {
+          "type": "guid",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "octal_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "source_file",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "comment",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "keyword",
+          "named": true
+        },
+        {
+          "type": "literal",
+          "named": true
+        },
+        {
+          "type": "newline",
+          "named": true
+        },
+        {
+          "type": "symbol",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "symbol",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "!",
+    "named": false
+  },
+  {
+    "type": "#",
+    "named": false
+  },
+  {
+    "type": "$",
+    "named": false
+  },
+  {
+    "type": "%",
+    "named": false
+  },
+  {
+    "type": "&",
+    "named": false
+  },
+  {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
+    "type": "*",
+    "named": false
+  },
+  {
+    "type": "+",
+    "named": false
+  },
+  {
+    "type": "+=",
+    "named": false
+  },
+  {
+    "type": ",",
+    "named": false
+  },
+  {
+    "type": "-",
+    "named": false
+  },
+  {
+    "type": "-=",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
+    "type": "/",
+    "named": false
+  },
+  {
+    "type": ":",
+    "named": false
+  },
+  {
+    "type": ":=",
+    "named": false
+  },
+  {
+    "type": ";",
+    "named": false
+  },
+  {
+    "type": "<",
+    "named": false
+  },
+  {
+    "type": "<=",
+    "named": false
+  },
+  {
+    "type": "<>",
+    "named": false
+  },
+  {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": ">",
+    "named": false
+  },
+  {
+    "type": ">=",
+    "named": false
+  },
+  {
+    "type": "@",
+    "named": false
+  },
+  {
+    "type": "ACCESS",
+    "named": false
+  },
+  {
+    "type": "ADDRESSOF",
+    "named": false
+  },
+  {
+    "type": "ALIAS",
+    "named": false
+  },
+  {
+    "type": "AND",
+    "named": false
+  },
+  {
+    "type": "APPACTIVATE",
+    "named": false
+  },
+  {
+    "type": "APPEND",
+    "named": false
+  },
+  {
+    "type": "AS",
+    "named": false
+  },
+  {
+    "type": "ATTRIBUTE",
+    "named": false
+  },
+  {
+    "type": "BEEP",
+    "named": false
+  },
+  {
+    "type": "BEGIN",
+    "named": false
+  },
+  {
+    "type": "BEGINPROPERTY",
+    "named": false
+  },
+  {
+    "type": "BINARY",
+    "named": false
+  },
+  {
+    "type": "BOOLEAN",
+    "named": false
+  },
+  {
+    "type": "BYREF",
+    "named": false
+  },
+  {
+    "type": "BYTE",
+    "named": false
+  },
+  {
+    "type": "BYVAL",
+    "named": false
+  },
+  {
+    "type": "CALL",
+    "named": false
+  },
+  {
+    "type": "CASE",
+    "named": false
+  },
+  {
+    "type": "CHDIR",
+    "named": false
+  },
+  {
+    "type": "CHDRIVE",
+    "named": false
+  },
+  {
+    "type": "CLASS",
+    "named": false
+  },
+  {
+    "type": "CLOSE",
+    "named": false
+  },
+  {
+    "type": "COLLECTION",
+    "named": false
+  },
+  {
+    "type": "CONST",
+    "named": false
+  },
+  {
+    "type": "DATE",
+    "named": false
+  },
+  {
+    "type": "DECLARE",
+    "named": false
+  },
+  {
+    "type": "DEFBOOL",
+    "named": false
+  },
+  {
+    "type": "DEFBYTE",
+    "named": false
+  },
+  {
+    "type": "DEFCUR",
+    "named": false
+  },
+  {
+    "type": "DEFDATE",
+    "named": false
+  },
+  {
+    "type": "DEFDBL",
+    "named": false
+  },
+  {
+    "type": "DEFDEC",
+    "named": false
+  },
+  {
+    "type": "DEFINT",
+    "named": false
+  },
+  {
+    "type": "DEFLNG",
+    "named": false
+  },
+  {
+    "type": "DEFOBJ",
+    "named": false
+  },
+  {
+    "type": "DEFSNG",
+    "named": false
+  },
+  {
+    "type": "DEFSTR",
+    "named": false
+  },
+  {
+    "type": "DEFVAR",
+    "named": false
+  },
+  {
+    "type": "DELETESETTING",
+    "named": false
+  },
+  {
+    "type": "DIM",
+    "named": false
+  },
+  {
+    "type": "DO",
+    "named": false
+  },
+  {
+    "type": "DOUBLE",
+    "named": false
+  },
+  {
+    "type": "EACH",
+    "named": false
+  },
+  {
+    "type": "ELSE",
+    "named": false
+  },
+  {
+    "type": "ELSEIF",
+    "named": false
+  },
+  {
+    "type": "END",
+    "named": false
+  },
+  {
+    "type": "ENDPROPERTY",
+    "named": false
+  },
+  {
+    "type": "END_ENUM",
+    "named": false
+  },
+  {
+    "type": "END_FUNCTION",
+    "named": false
+  },
+  {
+    "type": "END_IF",
+    "named": false
+  },
+  {
+    "type": "END_PROPERTY",
+    "named": false
+  },
+  {
+    "type": "END_SELECT",
+    "named": false
+  },
+  {
+    "type": "END_SUB",
+    "named": false
+  },
+  {
+    "type": "END_TYPE",
+    "named": false
+  },
+  {
+    "type": "END_WITH",
+    "named": false
+  },
+  {
+    "type": "ENUM",
+    "named": false
+  },
+  {
+    "type": "EQV",
+    "named": false
+  },
+  {
+    "type": "ERASE",
+    "named": false
+  },
+  {
+    "type": "ERROR",
+    "named": false
+  },
+  {
+    "type": "EVENT",
+    "named": false
+  },
+  {
+    "type": "EXIT_DO",
+    "named": false
+  },
+  {
+    "type": "EXIT_FOR",
+    "named": false
+  },
+  {
+    "type": "EXIT_FUNCTION",
+    "named": false
+  },
+  {
+    "type": "EXIT_PROPERTY",
+    "named": false
+  },
+  {
+    "type": "EXIT_SUB",
+    "named": false
+  },
+  {
+    "type": "FALSE",
+    "named": false
+  },
+  {
+    "type": "FILECOPY",
+    "named": false
+  },
+  {
+    "type": "FOR",
+    "named": false
+  },
+  {
+    "type": "FRIEND",
+    "named": false
+  },
+  {
+    "type": "FUNCTION",
+    "named": false
+  },
+  {
+    "type": "GET",
+    "named": false
+  },
+  {
+    "type": "GLOBAL",
+    "named": false
+  },
+  {
+    "type": "GOSUB",
+    "named": false
+  },
+  {
+    "type": "GOTO",
+    "named": false
+  },
+  {
+    "type": "IF",
+    "named": false
+  },
+  {
+    "type": "IMP",
+    "named": false
+  },
+  {
+    "type": "IMPLEMENTS",
+    "named": false
+  },
+  {
+    "type": "IN",
+    "named": false
+  },
+  {
+    "type": "INPUT",
+    "named": false
+  },
+  {
+    "type": "INTEGER",
+    "named": false
+  },
+  {
+    "type": "IS",
+    "named": false
+  },
+  {
+    "type": "KILL",
+    "named": false
+  },
+  {
+    "type": "LEN",
+    "named": false
+  },
+  {
+    "type": "LET",
+    "named": false
+  },
+  {
+    "type": "LIB",
+    "named": false
+  },
+  {
+    "type": "LIKE",
+    "named": false
+  },
+  {
+    "type": "LINE_INPUT",
+    "named": false
+  },
+  {
+    "type": "LOAD",
+    "named": false
+  },
+  {
+    "type": "LOCK",
+    "named": false
+  },
+  {
+    "type": "LOCK_READ",
+    "named": false
+  },
+  {
+    "type": "LOCK_READ_WRITE",
+    "named": false
+  },
+  {
+    "type": "LOCK_WRITE",
+    "named": false
+  },
+  {
+    "type": "LONG",
+    "named": false
+  },
+  {
+    "type": "LOOP",
+    "named": false
+  },
+  {
+    "type": "LSET",
+    "named": false
+  },
+  {
+    "type": "MACRO_ELSE",
+    "named": false
+  },
+  {
+    "type": "MACRO_ELSEIF",
+    "named": false
+  },
+  {
+    "type": "MACRO_END_IF",
+    "named": false
+  },
+  {
+    "type": "MACRO_IF",
+    "named": false
+  },
+  {
+    "type": "ME",
+    "named": false
+  },
+  {
+    "type": "MID",
+    "named": false
+  },
+  {
+    "type": "MKDIR",
+    "named": false
+  },
+  {
+    "type": "MOD",
+    "named": false
+  },
+  {
+    "type": "NAME",
+    "named": false
+  },
+  {
+    "type": "NEW",
+    "named": false
+  },
+  {
+    "type": "NEXT",
+    "named": false
+  },
+  {
+    "type": "NOT",
+    "named": false
+  },
+  {
+    "type": "NOTHING",
+    "named": false
+  },
+  {
+    "type": "NULL_",
+    "named": false
+  },
+  {
+    "type": "OBJECT",
+    "named": false
+  },
+  {
+    "type": "ON",
+    "named": false
+  },
+  {
+    "type": "ON_ERROR",
+    "named": false
+  },
+  {
+    "type": "ON_LOCAL_ERROR",
+    "named": false
+  },
+  {
+    "type": "OPEN",
+    "named": false
+  },
+  {
+    "type": "OPTIONAL",
+    "named": false
+  },
+  {
+    "type": "OPTION_BASE",
+    "named": false
+  },
+  {
+    "type": "OPTION_COMPARE",
+    "named": false
+  },
+  {
+    "type": "OPTION_EXPLICIT",
+    "named": false
+  },
+  {
+    "type": "OPTION_PRIVATE_MODULE",
+    "named": false
+  },
+  {
+    "type": "OR",
+    "named": false
+  },
+  {
+    "type": "OUTPUT",
+    "named": false
+  },
+  {
+    "type": "PARAMARRAY",
+    "named": false
+  },
+  {
+    "type": "PRESERVE",
+    "named": false
+  },
+  {
+    "type": "PRINT",
+    "named": false
+  },
+  {
+    "type": "PRIVATE",
+    "named": false
+  },
+  {
+    "type": "PROPERTY_GET",
+    "named": false
+  },
+  {
+    "type": "PROPERTY_LET",
+    "named": false
+  },
+  {
+    "type": "PROPERTY_SET",
+    "named": false
+  },
+  {
+    "type": "PUBLIC",
+    "named": false
+  },
+  {
+    "type": "PUT",
+    "named": false
+  },
+  {
+    "type": "RAISEEVENT",
+    "named": false
+  },
+  {
+    "type": "RANDOM",
+    "named": false
+  },
+  {
+    "type": "RANDOMIZE",
+    "named": false
+  },
+  {
+    "type": "READ",
+    "named": false
+  },
+  {
+    "type": "READ_WRITE",
+    "named": false
+  },
+  {
+    "type": "REDIM",
+    "named": false
+  },
+  {
+    "type": "REM",
+    "named": false
+  },
+  {
+    "type": "RESET",
+    "named": false
+  },
+  {
+    "type": "RESUME",
+    "named": false
+  },
+  {
+    "type": "RETURN",
+    "named": false
+  },
+  {
+    "type": "RMDIR",
+    "named": false
+  },
+  {
+    "type": "RSET",
+    "named": false
+  },
+  {
+    "type": "SAVEPICTURE",
+    "named": false
+  },
+  {
+    "type": "SAVESETTING",
+    "named": false
+  },
+  {
+    "type": "SEEK",
+    "named": false
+  },
+  {
+    "type": "SELECT",
+    "named": false
+  },
+  {
+    "type": "SENDKEYS",
+    "named": false
+  },
+  {
+    "type": "SET",
+    "named": false
+  },
+  {
+    "type": "SETATTR",
+    "named": false
+  },
+  {
+    "type": "SHARED",
+    "named": false
+  },
+  {
+    "type": "SINGLE",
+    "named": false
+  },
+  {
+    "type": "SPC",
+    "named": false
+  },
+  {
+    "type": "STATIC",
+    "named": false
+  },
+  {
+    "type": "STEP",
+    "named": false
+  },
+  {
+    "type": "STOP",
+    "named": false
+  },
+  {
+    "type": "STRING",
+    "named": false
+  },
+  {
+    "type": "SUB",
+    "named": false
+  },
+  {
+    "type": "TAB",
+    "named": false
+  },
+  {
+    "type": "TEXT",
+    "named": false
+  },
+  {
+    "type": "THEN",
+    "named": false
+  },
+  {
+    "type": "TIME",
+    "named": false
+  },
+  {
+    "type": "TO",
+    "named": false
+  },
+  {
+    "type": "TRUE",
+    "named": false
+  },
+  {
+    "type": "TYPE",
+    "named": false
+  },
+  {
+    "type": "TYPEOF",
+    "named": false
+  },
+  {
+    "type": "UNLOAD",
+    "named": false
+  },
+  {
+    "type": "UNLOCK",
+    "named": false
+  },
+  {
+    "type": "UNTIL",
+    "named": false
+  },
+  {
+    "type": "VARIANT",
+    "named": false
+  },
+  {
+    "type": "VERSION",
+    "named": false
+  },
+  {
+    "type": "WEND",
+    "named": false
+  },
+  {
+    "type": "WHILE",
+    "named": false
+  },
+  {
+    "type": "WIDTH",
+    "named": false
+  },
+  {
+    "type": "WITH",
+    "named": false
+  },
+  {
+    "type": "WITHEVENTS",
+    "named": false
+  },
+  {
+    "type": "WRITE",
+    "named": false
+  },
+  {
+    "type": "XOR",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "\\",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
+    "type": "^",
+    "named": false
+  },
+  {
+    "type": "color_literal",
+    "named": true
+  },
+  {
+    "type": "comment",
+    "named": true
+  },
+  {
+    "type": "date_literal",
+    "named": true
+  },
+  {
+    "type": "double_literal",
+    "named": true
+  },
+  {
+    "type": "file_number",
+    "named": true
+  },
+  {
+    "type": "frx_offset",
+    "named": true
+  },
+  {
+    "type": "guid",
+    "named": true
+  },
+  {
+    "type": "identifier",
+    "named": true
+  },
+  {
+    "type": "integer_literal",
+    "named": true
+  },
+  {
+    "type": "line_continuation",
+    "named": true
+  },
+  {
+    "type": "newline",
+    "named": true
+  },
+  {
+    "type": "octal_literal",
+    "named": true
+  },
+  {
+    "type": "string_literal",
+    "named": true
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "}",
+    "named": false
+  }
+]

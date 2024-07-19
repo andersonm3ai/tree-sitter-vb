@@ -1,0 +1,995 @@
+{
+  "name": "vb",
+  "rules": {
+    "source_file": {
+      "type": "REPEAT",
+      "content": {
+        "type": "SYMBOL",
+        "name": "_statement"
+      }
+    },
+    "_statement": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "keyword"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "symbol"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "identifier"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "newline"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "comment"
+        }
+      ]
+    },
+    "keyword": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "ACCESS"
+        },
+        {
+          "type": "STRING",
+          "value": "ADDRESSOF"
+        },
+        {
+          "type": "STRING",
+          "value": "ALIAS"
+        },
+        {
+          "type": "STRING",
+          "value": "AND"
+        },
+        {
+          "type": "STRING",
+          "value": "ATTRIBUTE"
+        },
+        {
+          "type": "STRING",
+          "value": "APPACTIVATE"
+        },
+        {
+          "type": "STRING",
+          "value": "APPEND"
+        },
+        {
+          "type": "STRING",
+          "value": "AS"
+        },
+        {
+          "type": "STRING",
+          "value": "BEEP"
+        },
+        {
+          "type": "STRING",
+          "value": "BEGIN"
+        },
+        {
+          "type": "STRING",
+          "value": "BEGINPROPERTY"
+        },
+        {
+          "type": "STRING",
+          "value": "BINARY"
+        },
+        {
+          "type": "STRING",
+          "value": "BOOLEAN"
+        },
+        {
+          "type": "STRING",
+          "value": "BYVAL"
+        },
+        {
+          "type": "STRING",
+          "value": "BYREF"
+        },
+        {
+          "type": "STRING",
+          "value": "BYTE"
+        },
+        {
+          "type": "STRING",
+          "value": "CALL"
+        },
+        {
+          "type": "STRING",
+          "value": "CASE"
+        },
+        {
+          "type": "STRING",
+          "value": "CHDIR"
+        },
+        {
+          "type": "STRING",
+          "value": "CHDRIVE"
+        },
+        {
+          "type": "STRING",
+          "value": "CLASS"
+        },
+        {
+          "type": "STRING",
+          "value": "CLOSE"
+        },
+        {
+          "type": "STRING",
+          "value": "COLLECTION"
+        },
+        {
+          "type": "STRING",
+          "value": "CONST"
+        },
+        {
+          "type": "STRING",
+          "value": "DATE"
+        },
+        {
+          "type": "STRING",
+          "value": "DECLARE"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFBOOL"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFBYTE"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFDATE"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFDBL"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFDEC"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFCUR"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFINT"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFLNG"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFOBJ"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFSNG"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFSTR"
+        },
+        {
+          "type": "STRING",
+          "value": "DEFVAR"
+        },
+        {
+          "type": "STRING",
+          "value": "DELETESETTING"
+        },
+        {
+          "type": "STRING",
+          "value": "DIM"
+        },
+        {
+          "type": "STRING",
+          "value": "DO"
+        },
+        {
+          "type": "STRING",
+          "value": "DOUBLE"
+        },
+        {
+          "type": "STRING",
+          "value": "EACH"
+        },
+        {
+          "type": "STRING",
+          "value": "ELSE"
+        },
+        {
+          "type": "STRING",
+          "value": "ELSEIF"
+        },
+        {
+          "type": "STRING",
+          "value": "END_ENUM"
+        },
+        {
+          "type": "STRING",
+          "value": "END_FUNCTION"
+        },
+        {
+          "type": "STRING",
+          "value": "END_IF"
+        },
+        {
+          "type": "STRING",
+          "value": "END_PROPERTY"
+        },
+        {
+          "type": "STRING",
+          "value": "END_SELECT"
+        },
+        {
+          "type": "STRING",
+          "value": "END_SUB"
+        },
+        {
+          "type": "STRING",
+          "value": "END_TYPE"
+        },
+        {
+          "type": "STRING",
+          "value": "END_WITH"
+        },
+        {
+          "type": "STRING",
+          "value": "END"
+        },
+        {
+          "type": "STRING",
+          "value": "ENDPROPERTY"
+        },
+        {
+          "type": "STRING",
+          "value": "ENUM"
+        },
+        {
+          "type": "STRING",
+          "value": "EQV"
+        },
+        {
+          "type": "STRING",
+          "value": "ERASE"
+        },
+        {
+          "type": "STRING",
+          "value": "ERROR"
+        },
+        {
+          "type": "STRING",
+          "value": "EVENT"
+        },
+        {
+          "type": "STRING",
+          "value": "EXIT_DO"
+        },
+        {
+          "type": "STRING",
+          "value": "EXIT_FOR"
+        },
+        {
+          "type": "STRING",
+          "value": "EXIT_FUNCTION"
+        },
+        {
+          "type": "STRING",
+          "value": "EXIT_PROPERTY"
+        },
+        {
+          "type": "STRING",
+          "value": "EXIT_SUB"
+        },
+        {
+          "type": "STRING",
+          "value": "FALSE"
+        },
+        {
+          "type": "STRING",
+          "value": "FILECOPY"
+        },
+        {
+          "type": "STRING",
+          "value": "FRIEND"
+        },
+        {
+          "type": "STRING",
+          "value": "FOR"
+        },
+        {
+          "type": "STRING",
+          "value": "FUNCTION"
+        },
+        {
+          "type": "STRING",
+          "value": "GET"
+        },
+        {
+          "type": "STRING",
+          "value": "GLOBAL"
+        },
+        {
+          "type": "STRING",
+          "value": "GOSUB"
+        },
+        {
+          "type": "STRING",
+          "value": "GOTO"
+        },
+        {
+          "type": "STRING",
+          "value": "IF"
+        },
+        {
+          "type": "STRING",
+          "value": "IMP"
+        },
+        {
+          "type": "STRING",
+          "value": "IMPLEMENTS"
+        },
+        {
+          "type": "STRING",
+          "value": "IN"
+        },
+        {
+          "type": "STRING",
+          "value": "INPUT"
+        },
+        {
+          "type": "STRING",
+          "value": "IS"
+        },
+        {
+          "type": "STRING",
+          "value": "INTEGER"
+        },
+        {
+          "type": "STRING",
+          "value": "KILL"
+        },
+        {
+          "type": "STRING",
+          "value": "LOAD"
+        },
+        {
+          "type": "STRING",
+          "value": "LOCK"
+        },
+        {
+          "type": "STRING",
+          "value": "LONG"
+        },
+        {
+          "type": "STRING",
+          "value": "LOOP"
+        },
+        {
+          "type": "STRING",
+          "value": "LEN"
+        },
+        {
+          "type": "STRING",
+          "value": "LET"
+        },
+        {
+          "type": "STRING",
+          "value": "LIB"
+        },
+        {
+          "type": "STRING",
+          "value": "LIKE"
+        },
+        {
+          "type": "STRING",
+          "value": "LINE_INPUT"
+        },
+        {
+          "type": "STRING",
+          "value": "LOCK_READ"
+        },
+        {
+          "type": "STRING",
+          "value": "LOCK_WRITE"
+        },
+        {
+          "type": "STRING",
+          "value": "LOCK_READ_WRITE"
+        },
+        {
+          "type": "STRING",
+          "value": "LSET"
+        },
+        {
+          "type": "STRING",
+          "value": "MACRO_IF"
+        },
+        {
+          "type": "STRING",
+          "value": "MACRO_ELSEIF"
+        },
+        {
+          "type": "STRING",
+          "value": "MACRO_ELSE"
+        },
+        {
+          "type": "STRING",
+          "value": "MACRO_END_IF"
+        },
+        {
+          "type": "STRING",
+          "value": "ME"
+        },
+        {
+          "type": "STRING",
+          "value": "MID"
+        },
+        {
+          "type": "STRING",
+          "value": "MKDIR"
+        },
+        {
+          "type": "STRING",
+          "value": "MOD"
+        },
+        {
+          "type": "STRING",
+          "value": "NAME"
+        },
+        {
+          "type": "STRING",
+          "value": "NEXT"
+        },
+        {
+          "type": "STRING",
+          "value": "NEW"
+        },
+        {
+          "type": "STRING",
+          "value": "NOT"
+        },
+        {
+          "type": "STRING",
+          "value": "NOTHING"
+        },
+        {
+          "type": "STRING",
+          "value": "NULL_"
+        },
+        {
+          "type": "STRING",
+          "value": "OBJECT"
+        },
+        {
+          "type": "STRING",
+          "value": "ON"
+        },
+        {
+          "type": "STRING",
+          "value": "ON_ERROR"
+        },
+        {
+          "type": "STRING",
+          "value": "ON_LOCAL_ERROR"
+        },
+        {
+          "type": "STRING",
+          "value": "OPEN"
+        },
+        {
+          "type": "STRING",
+          "value": "OPTIONAL"
+        },
+        {
+          "type": "STRING",
+          "value": "OPTION_BASE"
+        },
+        {
+          "type": "STRING",
+          "value": "OPTION_EXPLICIT"
+        },
+        {
+          "type": "STRING",
+          "value": "OPTION_COMPARE"
+        },
+        {
+          "type": "STRING",
+          "value": "OPTION_PRIVATE_MODULE"
+        },
+        {
+          "type": "STRING",
+          "value": "OR"
+        },
+        {
+          "type": "STRING",
+          "value": "OUTPUT"
+        },
+        {
+          "type": "STRING",
+          "value": "PARAMARRAY"
+        },
+        {
+          "type": "STRING",
+          "value": "PRESERVE"
+        },
+        {
+          "type": "STRING",
+          "value": "PRINT"
+        },
+        {
+          "type": "STRING",
+          "value": "PRIVATE"
+        },
+        {
+          "type": "STRING",
+          "value": "PROPERTY_GET"
+        },
+        {
+          "type": "STRING",
+          "value": "PROPERTY_LET"
+        },
+        {
+          "type": "STRING",
+          "value": "PROPERTY_SET"
+        },
+        {
+          "type": "STRING",
+          "value": "PUBLIC"
+        },
+        {
+          "type": "STRING",
+          "value": "PUT"
+        },
+        {
+          "type": "STRING",
+          "value": "RANDOM"
+        },
+        {
+          "type": "STRING",
+          "value": "RANDOMIZE"
+        },
+        {
+          "type": "STRING",
+          "value": "RAISEEVENT"
+        },
+        {
+          "type": "STRING",
+          "value": "READ"
+        },
+        {
+          "type": "STRING",
+          "value": "READ_WRITE"
+        },
+        {
+          "type": "STRING",
+          "value": "REDIM"
+        },
+        {
+          "type": "STRING",
+          "value": "REM"
+        },
+        {
+          "type": "STRING",
+          "value": "RESET"
+        },
+        {
+          "type": "STRING",
+          "value": "RESUME"
+        },
+        {
+          "type": "STRING",
+          "value": "RETURN"
+        },
+        {
+          "type": "STRING",
+          "value": "RMDIR"
+        },
+        {
+          "type": "STRING",
+          "value": "RSET"
+        },
+        {
+          "type": "STRING",
+          "value": "SAVEPICTURE"
+        },
+        {
+          "type": "STRING",
+          "value": "SAVESETTING"
+        },
+        {
+          "type": "STRING",
+          "value": "SEEK"
+        },
+        {
+          "type": "STRING",
+          "value": "SELECT"
+        },
+        {
+          "type": "STRING",
+          "value": "SENDKEYS"
+        },
+        {
+          "type": "STRING",
+          "value": "SET"
+        },
+        {
+          "type": "STRING",
+          "value": "SETATTR"
+        },
+        {
+          "type": "STRING",
+          "value": "SHARED"
+        },
+        {
+          "type": "STRING",
+          "value": "SINGLE"
+        },
+        {
+          "type": "STRING",
+          "value": "SPC"
+        },
+        {
+          "type": "STRING",
+          "value": "STATIC"
+        },
+        {
+          "type": "STRING",
+          "value": "STEP"
+        },
+        {
+          "type": "STRING",
+          "value": "STOP"
+        },
+        {
+          "type": "STRING",
+          "value": "STRING"
+        },
+        {
+          "type": "STRING",
+          "value": "SUB"
+        },
+        {
+          "type": "STRING",
+          "value": "TAB"
+        },
+        {
+          "type": "STRING",
+          "value": "TEXT"
+        },
+        {
+          "type": "STRING",
+          "value": "THEN"
+        },
+        {
+          "type": "STRING",
+          "value": "TIME"
+        },
+        {
+          "type": "STRING",
+          "value": "TO"
+        },
+        {
+          "type": "STRING",
+          "value": "TRUE"
+        },
+        {
+          "type": "STRING",
+          "value": "TYPE"
+        },
+        {
+          "type": "STRING",
+          "value": "TYPEOF"
+        },
+        {
+          "type": "STRING",
+          "value": "UNLOAD"
+        },
+        {
+          "type": "STRING",
+          "value": "UNLOCK"
+        },
+        {
+          "type": "STRING",
+          "value": "UNTIL"
+        },
+        {
+          "type": "STRING",
+          "value": "VARIANT"
+        },
+        {
+          "type": "STRING",
+          "value": "VERSION"
+        },
+        {
+          "type": "STRING",
+          "value": "WEND"
+        },
+        {
+          "type": "STRING",
+          "value": "WHILE"
+        },
+        {
+          "type": "STRING",
+          "value": "WIDTH"
+        },
+        {
+          "type": "STRING",
+          "value": "WITH"
+        },
+        {
+          "type": "STRING",
+          "value": "WITHEVENTS"
+        },
+        {
+          "type": "STRING",
+          "value": "WRITE"
+        },
+        {
+          "type": "STRING",
+          "value": "XOR"
+        }
+      ]
+    },
+    "symbol": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "&"
+        },
+        {
+          "type": "STRING",
+          "value": ":="
+        },
+        {
+          "type": "STRING",
+          "value": "@"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "STRING",
+          "value": ","
+        },
+        {
+          "type": "STRING",
+          "value": "\\"
+        },
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "STRING",
+          "value": "!"
+        },
+        {
+          "type": "STRING",
+          "value": ">="
+        },
+        {
+          "type": "STRING",
+          "value": ">"
+        },
+        {
+          "type": "STRING",
+          "value": "#"
+        },
+        {
+          "type": "STRING",
+          "value": "<="
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "STRING",
+          "value": "-"
+        },
+        {
+          "type": "STRING",
+          "value": "-="
+        },
+        {
+          "type": "STRING",
+          "value": "*"
+        },
+        {
+          "type": "STRING",
+          "value": "<>"
+        },
+        {
+          "type": "STRING",
+          "value": "%"
+        },
+        {
+          "type": "STRING",
+          "value": "+"
+        },
+        {
+          "type": "STRING",
+          "value": "+="
+        },
+        {
+          "type": "STRING",
+          "value": "^"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        },
+        {
+          "type": "STRING",
+          "value": "["
+        },
+        {
+          "type": "STRING",
+          "value": "]"
+        }
+      ]
+    },
+    "literal": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "string_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "date_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "color_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "integer_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "double_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "file_number"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "octal_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "frx_offset"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "guid"
+        }
+      ]
+    },
+    "string_literal": {
+      "type": "PATTERN",
+      "value": "\"([^\"\\r\\n]|\"\")*\""
+    },
+    "date_literal": {
+      "type": "PATTERN",
+      "value": "#[^#\\r\\n]*#"
+    },
+    "color_literal": {
+      "type": "PATTERN",
+      "value": "&H[0-9A-F]+&?"
+    },
+    "integer_literal": {
+      "type": "PATTERN",
+      "value": "[0-9]+(E[0-9]+)*(#|&|!|@)?"
+    },
+    "double_literal": {
+      "type": "PATTERN",
+      "value": "[0-9]*\\.[0-9]+(E(\\+|-)?[0-9]+)*(#|&|!|@)?"
+    },
+    "file_number": {
+      "type": "PATTERN",
+      "value": "#[A-Z0-9_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ]+"
+    },
+    "octal_literal": {
+      "type": "PATTERN",
+      "value": "&O[0-7]+&?"
+    },
+    "frx_offset": {
+      "type": "PATTERN",
+      "value": ":[0-9A-F]+"
+    },
+    "guid": {
+      "type": "PATTERN",
+      "value": "\\{[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+\\}"
+    },
+    "identifier": {
+      "type": "PATTERN",
+      "value": "[A-Z_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ][A-Z0-9_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ]*"
+    },
+    "line_continuation": {
+      "type": "PATTERN",
+      "value": " _\\r?\\n"
+    },
+    "newline": {
+      "type": "PATTERN",
+      "value": "\\s*(\\r?\\n|: )\\s*"
+    },
+    "comment": {
+      "type": "PATTERN",
+      "value": "\\s*('\\s*|:\\s*REM\\s*).*"
+    }
+  },
+  "extras": [
+    {
+      "type": "PATTERN",
+      "value": "\\s"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "comment"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "line_continuation"
+    }
+  ],
+  "conflicts": [],
+  "precedences": [],
+  "externals": [],
+  "inline": [],
+  "supertypes": []
+}
