@@ -1,3 +1,11 @@
+/**
+ * @file VB grammar for tree-sitter
+ * @license MIT
+ */
+
+/// <reference types="tree-sitter-cli/dsl" />
+// @ts-check
+
 module.exports = grammar({
   name: 'vb',
 
@@ -81,8 +89,11 @@ module.exports = grammar({
 
     line_continuation: $ => / _\r?\n/,
 
-    newline: $ => /\s*(\r?\n|: )\s*/,
+    newline: $ => /\s*(\r?\n|:)\s*/,
 
-    comment: $ => /\s*('\s*|:\s*REM\s*).*/,
+    comment: $ => token(seq(
+      choice("'", /REM\b/),
+      /.*/
+    )),
   }
 });
