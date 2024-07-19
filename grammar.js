@@ -19,15 +19,15 @@ module.exports = grammar({
     source_file: $ => repeat($._statement),
 
     _statement: $ => choice(
+      $.identifier,
       $.keyword,
       $.symbol,
       $.literal,
-      $.identifier,
       $.newline,
       $.comment
     ),
 
-    keyword: $ => choice(
+    keyword: $ => token(choice(
       'ACCESS', 'ADDRESSOF', 'ALIAS', 'AND', 'ATTRIBUTE', 'APPACTIVATE', 'APPEND', 'AS',
       'BEEP', 'BEGIN', 'BEGINPROPERTY', 'BINARY', 'BOOLEAN', 'BYVAL', 'BYREF', 'BYTE', 'CALL',
       'CASE', 'CHDIR', 'CHDRIVE', 'CLASS', 'CLOSE', 'COLLECTION', 'CONST', 'DATE', 'DECLARE',
@@ -48,12 +48,12 @@ module.exports = grammar({
       'SENDKEYS', 'SET', 'SETATTR', 'SHARED', 'SINGLE', 'SPC', 'STATIC', 'STEP', 'STOP', 'STRING',
       'SUB', 'TAB', 'TEXT', 'THEN', 'TIME', 'TO', 'TRUE', 'TYPE', 'TYPEOF', 'UNLOAD', 'UNLOCK',
       'UNTIL', 'VARIANT', 'VERSION', 'WEND', 'WHILE', 'WIDTH', 'WITH', 'WITHEVENTS', 'WRITE', 'XOR'
-    ),
+    )),
 
-    symbol: $ => choice(
+    symbol: $ => token(choice(
       '&', ':=', '@', ':', ',', '\\', '/', '$', '.', '=', '!', '>=', '>', '#', '<=', '{', '(', '<', '-',
       '-=', '*', '<>', '%', '+', '+=', '^', '}', ')', ';', '[', ']'
-    ),
+    )),
 
     literal: $ => choice(
       $.string_literal,
@@ -67,33 +67,33 @@ module.exports = grammar({
       $.guid
     ),
 
-    string_literal: $ => /"([^"\r\n]|"")*"/,
+    string_literal: $ => token(/"([^"\r\n]|"")*"/),
 
-    date_literal: $ => /#[^#\r\n]*#/,
+    date_literal: $ => token(/#[^#\r\n]*#/),
 
-    color_literal: $ => /&H[0-9A-F]+&?/,
+    color_literal: $ => token(/&H[0-9A-F]+&?/),
 
-    integer_literal: $ => /[0-9]+(E[0-9]+)*(#|&|!|@)?/,
+    integer_literal: $ => token(/[0-9]+(E[0-9]+)*(#|&|!|@)?/),
 
-    double_literal: $ => /[0-9]*\.[0-9]+(E(\+|-)?[0-9]+)*(#|&|!|@)?/,
+    double_literal: $ => token(/[0-9]*\.[0-9]+(E(\+|-)?[0-9]+)*(#|&|!|@)?/),
 
-    file_number: $ => /#[A-Z0-9_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ]+/,
+    file_number: $ => token(/#[A-Z0-9_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ]+/),
 
-    octal_literal: $ => /&O[0-7]+&?/,
+    octal_literal: $ => token(/&O[0-7]+&?/),
 
-    frx_offset: $ => /:[0-9A-F]+/,
+    frx_offset: $ => token(/:[0-9A-F]+/),
 
-    guid: $ => /\{[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+\}/,
+    guid: $ => token(/\{[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+\}/),
 
-    identifier: $ => /[A-Z_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ][A-Z0-9_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ]*/,
+    identifier: $ => token(/[A-Za-z_][A-Za-z0-9_]*/),
 
-    line_continuation: $ => / _\r?\n/,
+    line_continuation: $ => token(/ _\r?\n/),
 
-    newline: $ => /\s*(\r?\n|:)\s*/,
+    newline: $ => token(/\r?\n/),
 
-    comment: $ => token(seq(
-      choice("'", /REM\b/),
-      /.*/
+    comment: $ => token(choice(
+      seq("'", /.*/),
+      seq(/REM/, /.*/)
     )),
   }
 });
