@@ -1,99 +1,250 @@
-/**
- * @file VB grammar for tree-sitter
- * @license MIT
- */
-
-/// <reference types="tree-sitter-cli/dsl" />
-// @ts-check
-
 module.exports = grammar({
-  name: 'vb',
+  name: 'vb6',
 
-  extras: $ => [
-    /\s/,
-    $.comment,
-    $.line_continuation,
+  // Define conflitos de gramática para o Tree-sitter resolver ambiguidade
+  conflicts: $ => [
+    [$.source_file, $._definition]
   ],
 
   rules: {
-    source_file: $ => repeat($._statement),
+    // Regra principal que define o arquivo-fonte VB6
+    source_file: $ => seq(
+      optional($.header), // Opcionalmente, inclui um cabeçalho
+      repeat(choice($.variable_definition, $._definition, $.comment)) // Repete definições de variáveis, definições ou comentários
+    ),
 
-    _statement: $ => choice(
-      $.identifier,
-      $.keyword,
-      $.symbol,
-      $.literal,
-      $.newline,
+    // Define a estrutura do cabeçalho
+    header: $ => repeat1(choice(
+      $.version_statement,
+      $.attribute_statement,
+      $.begin_block,
+      $.implements_statement,
+      $.option_statement
+    )),
+
+    // Define uma declaração de versão
+    version_statement: $ => seq('VERSION', $.number, 'CLASS'),
+
+    // Define uma declaração de atributo
+    attribute_statement: $ => seq('Attribute', $.identifier, '=', $.attribute_value),
+
+    // Valor de atributo pode ser string, booleano ou número
+    attribute_value: $ => choice($.string, $.boolean, $.number),
+
+    // Bloco BEGIN
+    begin_block: $ => seq(
+      'BEGIN',
+      repeat($.setting_statement), // Repete declarações de configuração
+      'END'
+    ),
+
+    // Declaração de configuração dentro de um bloco BEGIN
+    setting_statement: $ => seq(
+      field('name', $.identifier),
+      '=',
+      field('value', $.number),
+      optional($.comment) // Comentário opcional
+    ),
+
+    // Declaração de implementação
+    implements_statement: $ => seq('Implements', $.identifier),
+
+    // Declaração de opção
+    option_statement: $ => seq('Option', choice('Explicit', 'Base', 'Compare')),
+
+    // Definições de métodos e propriedades
+    _definition: $ => choice(
+      $.sub_definition,
+      $.function_definition,
+      $.property_definition,
       $.comment
     ),
 
-    keyword: $ => token(choice(
-      'ACCESS', 'ADDRESSOF', 'ALIAS', 'AND', 'ATTRIBUTE', 'APPACTIVATE', 'APPEND', 'AS',
-      'BEEP', 'BEGIN', 'BEGINPROPERTY', 'BINARY', 'BOOLEAN', 'BYVAL', 'BYREF', 'BYTE', 'CALL',
-      'CASE', 'CHDIR', 'CHDRIVE', 'CLASS', 'CLOSE', 'COLLECTION', 'CONST', 'DATE', 'DECLARE',
-      'DEFBOOL', 'DEFBYTE', 'DEFDATE', 'DEFDBL', 'DEFDEC', 'DEFCUR', 'DEFINT', 'DEFLNG', 'DEFOBJ',
-      'DEFSNG', 'DEFSTR', 'DEFVAR', 'DELETESETTING', 'DIM', 'DO', 'DOUBLE', 'EACH', 'ELSE', 'ELSEIF',
-      'END_ENUM', 'END_FUNCTION', 'END_IF', 'END_PROPERTY', 'END_SELECT', 'END_SUB', 'END_TYPE',
-      'END_WITH', 'END', 'ENDPROPERTY', 'ENUM', 'EQV', 'ERASE', 'ERROR', 'EVENT', 'EXIT_DO',
-      'EXIT_FOR', 'EXIT_FUNCTION', 'EXIT_PROPERTY', 'EXIT_SUB', 'FALSE', 'FILECOPY', 'FRIEND',
-      'FOR', 'FUNCTION', 'GET', 'GLOBAL', 'GOSUB', 'GOTO', 'IF', 'IMP', 'IMPLEMENTS', 'IN',
-      'INPUT', 'IS', 'INTEGER', 'KILL', 'LOAD', 'LOCK', 'LONG', 'LOOP', 'LEN', 'LET', 'LIB', 'LIKE',
-      'LINE_INPUT', 'LOCK_READ', 'LOCK_WRITE', 'LOCK_READ_WRITE', 'LSET', 'MACRO_IF', 'MACRO_ELSEIF',
-      'MACRO_ELSE', 'MACRO_END_IF', 'ME', 'MID', 'MKDIR', 'MOD', 'NAME', 'NEXT', 'NEW', 'NOT',
-      'NOTHING', 'NULL_', 'OBJECT', 'ON', 'ON_ERROR', 'ON_LOCAL_ERROR', 'OPEN', 'OPTIONAL',
-      'OPTION_BASE', 'OPTION_EXPLICIT', 'OPTION_COMPARE', 'OPTION_PRIVATE_MODULE', 'OR', 'OUTPUT',
-      'PARAMARRAY', 'PRESERVE', 'PRINT', 'PRIVATE', 'PROPERTY_GET', 'PROPERTY_LET', 'PROPERTY_SET',
-      'PUBLIC', 'PUT', 'RANDOM', 'RANDOMIZE', 'RAISEEVENT', 'READ', 'READ_WRITE', 'REDIM', 'REM',
-      'RESET', 'RESUME', 'RETURN', 'RMDIR', 'RSET', 'SAVEPICTURE', 'SAVESETTING', 'SEEK', 'SELECT',
-      'SENDKEYS', 'SET', 'SETATTR', 'SHARED', 'SINGLE', 'SPC', 'STATIC', 'STEP', 'STOP', 'STRING',
-      'SUB', 'TAB', 'TEXT', 'THEN', 'TIME', 'TO', 'TRUE', 'TYPE', 'TYPEOF', 'UNLOAD', 'UNLOCK',
-      'UNTIL', 'VARIANT', 'VERSION', 'WEND', 'WHILE', 'WIDTH', 'WITH', 'WITHEVENTS', 'WRITE', 'XOR'
-    )),
-
-    symbol: $ => token(choice(
-      '&', ':=', '@', ':', ',', '\\', '/', '$', '.', '=', '!', '>=', '>', '#', '<=', '{', '(', '<', '-',
-      '-=', '*', '<>', '%', '+', '+=', '^', '}', ')', ';', '[', ']'
-    )),
-
-    literal: $ => choice(
-      $.string_literal,
-      $.date_literal,
-      $.color_literal,
-      $.integer_literal,
-      $.double_literal,
-      $.file_number,
-      $.octal_literal,
-      $.frx_offset,
-      $.guid
+    // Declaração de variável
+    variable_definition: $ => seq(
+      choice('Public', 'Private', 'Dim', 'Static', 'Global', 'Const'), // Modificadores de acesso
+      field('name', $.identifier),
+      'As',
+      field('type', $.type)
     ),
 
-    string_literal: $ => token(/"([^"\r\n]|"")*"/),
 
-    date_literal: $ => token(/#[^#\r\n]*#/),
+    // Definição completa de sub
+    sub_definition: $ => seq(
+      optional(choice('Public', 'Private')), // Modificadores de acesso opcionais
+      'Sub',
+      field('name', $.identifier),
+      $.formal_parameters, // Parâmetros do sub
+      field('block', $.block), // Corpo do método
+      $.end_sub
+    ),
 
-    color_literal: $ => token(/&H[0-9A-F]+&?/),
+    // Definição completa de função
+    function_definition: $ => seq(
+      optional(choice('Public', 'Private')), // Modificadores de acesso opcionais
+      'Function',
+      field('name', $.identifier),
+      $.formal_parameters, // Parâmetros da função
+      optional(seq(
+        'As',
+        field('return_type', $.type) // Tipo de retorno da função
+      )),
+      field('block', $.block), // Corpo da função
+      $.end_function
+    ),
 
-    integer_literal: $ => token(/[0-9]+(E[0-9]+)*(#|&|!|@)?/),
+    // Definição de propriedade
+    property_definition: $ => seq(
+      optional(choice('Public', 'Private')), // Modificadores de acesso opcionais
+      'Property',
+      choice('Get', 'Let', 'Set'), // Tipo de propriedade
+      field('name', $.identifier),
+      $.formal_parameters, // Parâmetros da propriedade
+      field('block', $.block), // Corpo da propriedade
+      $.end_property
+    ),
 
-    double_literal: $ => token(/[0-9]*\.[0-9]+(E(\+|-)?[0-9]+)*(#|&|!|@)?/),
+    // Declaração de finalização de sub
+    end_sub: $ => seq('End', 'Sub'),
 
-    file_number: $ => token(/#[A-Z0-9_ÄÖÜÁÉÍÓÚÂÊÎÔÛÀÈÌÒÙÃẼĨÕŨÇ]+/),
+    // Declaração de finalização de função
+    end_function: $ => seq('End', 'Function'),
 
-    octal_literal: $ => token(/&O[0-7]+&?/),
+    // Declaração de finalização de propriedade
+    end_property: $ => seq('End', 'Property'),
 
-    frx_offset: $ => token(/:[0-9A-F]+/),
+    // Corpo do método
+    block: $ => repeat1($._method_body_element),
 
-    guid: $ => token(/\{[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+-[0-9A-F]+\}/),
+    // Elementos dentro do corpo do método
+    _method_body_element: $ => choice(
+      $.identifier,
+      $.variable_declaration,
+      $.assignment,
+      $.function_call,
+      $.call_statement,
+      $.comment
+    ),
 
-    identifier: $ => token(/[A-Za-z_][A-Za-z0-9_]*/),
+    // Declaração de variável
+    variable_declaration: $ => seq(
+      'Dim',
+      field('name', $.identifier),
+      'As',
+      field('type', $.type)
+    ),
 
-    line_continuation: $ => token(/ _\r?\n/),
+    // Lista de parâmetros
+    formal_parameters: $ => seq(
+      '(',
+      optional(commaSep($.parameter)),
+      ')'
+    ),
 
-    newline: $ => token(/\r?\n/),
+    // Definição de parâmetro
+    parameter: $ => seq(
+      field('name', $.identifier),
+      optional(seq(
+        'As',
+        field('type', $.type)
+      ))
+    ),
 
+    // Identificador para variáveis, funções, etc.
+    identifier: $ => /[a-zA-Z_][a-zA-Z0-9_]*[$%&@#!]?/,
+
+    // Identificador qualificado para acessar membros
+    qualified_identifier: $ => seq(
+      $.identifier,
+      repeat(seq('.', $.identifier))
+    ),
+
+    // Tipos básicos
+    type: $ => choice(
+      'Integer',
+      'Long',
+      'Single',
+      'Double',
+      'String',
+      'Boolean',
+      'Variant',
+      'Object',
+      'Date'
+    ),
+
+    // Chamada de função
+    function_call: $ => prec.left(seq(
+      field('name', $.qualified_identifier),
+      '(',
+      optional($.argument_list),
+      ')'
+    )),
+
+    // Lista de argumentos
+    argument_list: $ => seq(
+      '(',
+      commaSep(choice($.identifier, $.string, $.boolean, $.number)),
+      ')'
+    ),
+
+    // Declaração de chamada (sem parênteses)
+    call_statement: $ => prec(3, seq(
+      field('name', $.identifier),
+      field('arguments', $.argument_list_no_parens),
+      optional(';')
+    )),
+
+    // Lista de argumentos (sem parênteses)
+    argument_list_no_parens: $ => commaSep(choice($.identifier, $.string, $.boolean, $.number)),
+
+    // Expressão
+    _expression: $ => choice(
+      $.literal,
+      prec(1, $.identifier),
+      prec(2, $.concatenation), // Definindo precedência mais alta para concatenação
+      prec(3, $.function_call),
+      prec(3, $.call_statement)
+    ),
+
+    // Concatenação de strings
+    concatenation: $ => prec.left(seq(
+      $._expression,
+      '&',
+      $._expression
+    )),
+
+    // Valores literais
+    literal: $ => choice(
+      $.string,
+      $.number,
+      $.boolean
+    ),
+
+    // String literal
+    string: $ => /"[^"]*"/,
+
+    // Número literal (incluindo negativos)
+    number: $ => /-?\d+(\.\d+)?/,
+
+    // Booleano literal
+    boolean: $ => choice('True', 'False'),
+
+    // Comentários
     comment: $ => token(choice(
       seq("'", /.*/),
-      seq(/REM/, /.*/)
+      seq('Rem', /[^\n]*/)
     )),
+
+    // Atribuição de valor a uma variável
+    assignment: $ => seq(
+      field('variable', $.identifier),
+      '=',
+      field('value', $._expression)
+    )
   }
 });
+
+// Função utilitária para separar por vírgula
+function commaSep(rule) {
+  return seq(rule, repeat(seq(',', rule)));
+}
